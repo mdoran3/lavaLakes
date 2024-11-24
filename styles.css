@@ -1,5 +1,9 @@
 @charset "utf-8";
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap');
+
+html, body {
+    background-color: #E8E9EB;
+    font-family: 'Roboto Slab', serif;
+}
 
 .container {
     display: grid;
@@ -22,6 +26,7 @@ section {
     padding: 10px;
     background-color: #313638;
     align-items: center;
+    height: auto;
 }
 
 .left, .center, .right {
@@ -31,13 +36,16 @@ section {
 }
 
 .left {
-	display: flex;
-	justify-content: flex-start;
+    grid-column: 1;
+	display: flex-start;
+	justify-content: center;
 	align-items: center;
 	padding-right: 10px;
 }
 
 .center {
+    grid-column: 2;
+    display: flex;
 	justify-content: center;
 	align-items: center;
 	padding-left: 10px;
@@ -45,14 +53,15 @@ section {
 }
 
 .right {
-    justify-content: flex-end;
+    grid-column: 3;
+    display: flex-end;
+    justify-content: center;
     align-items: center;
     padding-left: 10px;
 }
 
 .title {
     color: #F06543;
-    font-family: 'Roboto Slab', serif; 
     font-size: 2em;
     margin: 0;
     text-align: center;
@@ -72,45 +81,166 @@ nav.top ul {
 	width: 100%;
 	height: 25%;
 }
- 
+
 .homeImage {
-    transform: scale(1.0);
-    transform-origin: center; 
+    grid-column: 1 / 3;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px; 
 }
 
-.homeText {
-	display: flex-end;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.homeText p {
-	color: #F09D51;
+.homeImage img {
+    width: 100%; 
+    height: auto; 
+    max-width: 100%; 
+    object-fit: contain; 
 }
 
 .magmaImage {
-    transform: scale(1.0);
-    transform-origin: center; 
+    grid-column: 1 / 3;
+    display: flex;             
+    flex-direction: column;    
+    align-items: center;       
+    justify-content: flex-start; 
+    text-align: center;        
+}
+
+.magmaImage img {
+    width: 100%;                
+    max-width: none;            
+    height: auto;               
+    display: block;             
+}
+
+.magmaImage p {
+    text-align: left;
+    justify-content: left;
+    align-items: left;
+    margin-top: 10px;           
+    font-size: 1em;             
+    color: #FFFFFF;            
+}
+
+.magmaImage a {
+    color: #F09D51;             
+    text-decoration: none;      
+}
+
+.magmaImage a:hover {
+    text-decoration: underline; 
+}
+
+.homeText {
+    grid-column: 3 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.homeText p {
+    grid-column: 3;
+    margin: 0 auto; 
+    padding: 0 20px; 
+    display: flex; 
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: #F09D51;
+    font-size: 1.5em;
+}
+
+/* ### Country Selection Buttons ### */
+
+.countries p {
+    color: #F06543;
+    font-size: 1.5em;
+    margin: 0;
+    text-align: center;
 }
 
 .countries ul {
     list-style-type: none;
     padding: 0;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+    width: 100%; 
 }
 
 .countries ul li {
-    background-color: #F06543; 
-    color: white; 
-    padding: 10px 20px; 
-    margin: 5px 0; 
-    text-align: center; 
-    border-radius: 8px; 
-    cursor: pointer; 
-    font-family: 'Roboto Slab', serif; 
-    transition: background-color 0.3s ease;
+    background-color: #F09D51;
+    color: white;
+    width: 50%;
+    padding: 10px 20px;
+    margin: 10px 0;
+    text-align: center;
+    border-radius: 12px; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    /* Box shadow 3d button effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+    object-fit: contain;
 }
 
 .countries ul li:hover {
     background-color: #d6543c;
+    
+    /* Box shadow 3d button effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px); 
+}
+
+/* ### Nav Selection Buttons ### */
+
+.top {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    gap: 10px; 
+    grid-column: 3; 
+}
+
+.top ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; 
+}
+
+.top ul li {
+    flex: 1; 
+    margin: 0 5px; 
+    background-color: #F06543; 
+    color: #E0DFD5; 
+    padding: 10px 20px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
+    border-radius: 8px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+
+    /* Box shadow 3d button effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+    object-fit: contain;
+}
+
+.top ul li:hover {
+    background-color: #F09D51;
+
+     /* Box shadow 3d button effect */
+     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15);
+     transform: translateY(-2px); 
+}
+
+.top a {
+    text-decoration: none;
+    color:  #313638;
 }
