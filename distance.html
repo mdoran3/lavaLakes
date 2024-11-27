@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Lava Lakes of the World</title>
+		<link href="layout.css" rel="stylesheet">
+		<link href="styles.css" rel="stylesheet">
+        <script src="distance.js"></script> 
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<div class="left">
+					<img src="volcano-7104380_960_720-3952104165.png" alt="Volcano Logo">
+				</div>
+				<div class="center">
+					<h1 class="title">Distance Calculator</h1>
+				</div>
+				<div class = "right">
+					<nav class="top">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+            				<li><a href="lavaLakes.html">Lava Lakes</a></li>
+            				<li><a href="distanceCalculator.html">Distance Calculator</a></li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+			<section>
+				<div class="homeImage">
+					<img src="lavaFlow.gif" alt="Lava Lake in the Congo">
+				</div>
+				<div class="textContainer">
+					<div class="homeText">
+						<h2>How far am I from a Lava Lake?</h2>
+                        <div class="distance">
+                            <form id="distanceForm">
+                                <label for="latitude">My Latitude</label><br>
+                                <div class="input-container">
+                                    <input type="text" id="latitude" name="latitude" placeholder="Enter Latitude">
+                                    <button type="button" id="getLatitudeBtn" onclick="getLocation()">Get</button>
+                                </div>
+                                <br><br>
+                        
+                                <label for="longitude">My Longitude</label><br>
+                                <div class="input-container">
+                                    <input type="text" id="longitude" name="longitude" placeholder="Enter Longitude">
+                                    <button type="button" id="getLongitudeBtn" onclick="getLocation()">Get</button>
+                                </div>
+                                <br><br>
+                        
+                                <label for="lavaLakes">Lava Lake</label><br>
+                                <select name="lavaLakes" id="lavaLakes">
+                                    <option value="erebus">Mount Erebus, Antarctica</option>
+                                    <option value="nyiragongo">Nyiragongo, Congo</option>
+                                    <option value="ertaale">Erta Ale, Ethiopia</option>
+                                    <option value="masaya">Masaya, Nicaragua</option>
+                                    <option value="kilauea">Kīlauea, USA</option>
+                                    <option value="ambrym">Ambrym, Vanuatu</option>
+                                </select><br><br>
+                        
+                                <div class="submitDistance">
+                                    <input type="submit" value="Calculate Distance">
+                                </div>
+                            </form>
+                        </div>
+						<!-- <div class="distance">
+                            <form action="../distance.js" method="get">
+                                <label for="latitude">My Latitude  </label><br>
+                                <input type="text" id="latitude" name="latitude" placeholder="Enter Latitude"><br><br>
+                                <label for="longitude">My Longitude</label><br>
+                                <input type="text" id="longitude" name="longitude" placeholder="Enter Longitude" required><br><br>
+                                <label for="lavaLakes">Lava Lake</label><br>
+                                <select name="lavaLakes" id="lavaLakes">
+                                    <option value="erebus">Mount Erebus, Antartica</option>
+                                    <option value="nyiragongo">Nyiragongo, Congo</option>
+                                    <option value="ertaale">Erta Ale, Ethiopia</option>
+                                    <option value="masaya">Masaya, Nicaragua</option>
+                                    <option value="kilauea">Kīlauea, USA</option>
+                                    <option value="ambrym">Ambrym, Vanuatu</option>
+                                </select><br><br>
+                                <div class="submitDistance">
+                                    <input type="submit" value="Calculate Distance">
+                                </div>
+                            </form>
+                        </div> -->
+					</div>
+				</div>
+			</section>
+			<footer>
+				<div class = "left">
+					<p>Ira A. Fulton Schools of Engineering</p>
+				</div>
+				<div class="centerFoot">&copy; 2024-2025</div>
+				<div class="right">
+					<p>Arizona State University</p>
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>

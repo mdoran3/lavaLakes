@@ -38,12 +38,38 @@ section {
 .left {
     grid-column: 1;
 	display: flex-start;
-	justify-content: center;
+	justify-content: left;
 	align-items: center;
 	padding-right: 10px;
 }
 
 .center {
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 100px;
+    font-size: clamp(6px, 1vw, 12px); 
+    overflow: hidden; 
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+}
+
+.centerCongo {
+    grid-column: 2;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 0px;
+    padding-right: 20px;
+    font-size: clamp(6px, 1vw, 12px);
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+}
+
+.centerFoot {
     grid-column: 2;
     display: flex;
 	justify-content: center;
@@ -55,7 +81,7 @@ section {
 .right {
     grid-column: 3;
     display: flex-end;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
     padding-left: 10px;
 }
@@ -187,6 +213,20 @@ nav.top ul {
     font-size: 1.5em;
 }
 
+.distance {
+    color: #F09D51;
+    font-size: 1em;
+    margin: 0;
+    text-align: left;
+}
+
+.submitDistance {
+    color: #F09D51;
+    font-size: 1em;
+    margin: 0;
+    text-align: center;
+}
+
 /* ### Country Selection Buttons ### */
 
 .countries p {
@@ -207,12 +247,8 @@ nav.top ul {
 }
 
 .countries ul li {
-    background-color: #F09D51;
-    color: white;
     width: 50%;
-    padding: 10px 20px;
     margin: 10px 0;
-    text-align: center;
     border-radius: 12px; 
     cursor: pointer;
     transition: all 0.3s ease;
@@ -222,12 +258,25 @@ nav.top ul {
     object-fit: contain;
 }
 
-.countries ul li:hover {
+.countries ul li a {
+    display: block;
+    background-color: #F09D51;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px; 
+    border-radius: 12px; 
+    text-align: center;
+    width: 100%; 
+    height: 100%;
+}
+
+.countries ul li a:hover {
     background-color: #d6543c;
     
     /* Box shadow 3d button effect */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px); 
+    color: white;
 }
 
 /* ### Nav Selection Buttons ### */
@@ -254,7 +303,7 @@ nav.top ul {
     margin: 0 5px; 
     background-color: #F06543; 
     color: #E0DFD5; 
-    padding: 10px 20px; 
+    padding: 2px 0 2px 2px; 
     display: flex; 
     justify-content: center; 
     align-items: center; 
@@ -262,21 +311,40 @@ nav.top ul {
     border-radius: 8px; 
     cursor: pointer; 
     transition: background-color 0.3s ease;
+    height: 50px; 
 
     /* Box shadow 3d button effect */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
-    object-fit: contain;
+}
+
+.top ul li a {
+    display: block; 
+    width: 100%;
+    height: 100%;
+    color: #313638; 
+    text-decoration: none;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
 }
 
 .top ul li:hover {
     background-color: #F09D51;
 
-     /* Box shadow 3d button effect */
-     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15);
-     transform: translateY(-2px); 
+    /* Box shadow 3d button effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px); 
 }
 
-.top a {
-    text-decoration: none;
-    color:  #313638;
+.distLink {
+    color: #E0DFD5; 
+}
+
+.distLink a {
+    color: #E0DFD5; 
+    text-decoration: none; 
+}
+
+.distLink a:hover {
+    text-decoration: underline;
 }
