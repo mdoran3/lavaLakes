@@ -1,6 +1,6 @@
 "use strict";
 
-let intervalId;
+let retrievingProgress;
 let latitude;
 let longitude;
 let city;
@@ -16,29 +16,30 @@ lavaLakeCoords.set("Ambrym", [-16.24919, 168.12666]);
 
 function getLatitude() {
     const latitudeInput = document.getElementById("latitude");
-    let index = 0;
 
-    intervalId = setInterval(() => {
-        latitudeInput.placeholder = retrievingPlaceholderMsg.substring(0, index + 1);
-        index = (index + 1) % retrievingPlaceholderMsg.length;
+    let i = 0;
+
+    retrievingProgress = setInterval(() => {
+        latitudeInput.placeholder = retrievingPlaceholderMsg.substring(0, i + 1);
+        i = (i + 1) % retrievingPlaceholderMsg.length;
     }, 100);
 
     disableLongitude();
     disableLatitude();
     disableCity();
     // Geolocation API
-    if (navigator.geolocation) {
+    if (navigator.geolocation && navigator.permissions) {
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 latitude = position.coords.latitude;
-                clearInterval(intervalId);
+                clearInterval(retrievingProgress);
                 latitudeInput.value = latitude;
                 enableLongitude();  
                 enableLatitude();
                 enableCity();
             },
             (error) => {
-                clearInterval(intervalId);
+                clearInterval(retrievingProgress);
                 latitudeInput.placeholder = "Error retrieving latitude.";
                 enableLongitude();
                 enableLatitude();
@@ -46,7 +47,7 @@ function getLatitude() {
             }
         );
     } else {
-        clearInterval(intervalId);
+        clearInterval(retrievingProgress);
         latitudeInput.placeholder = "Unable to fetch latitude.";
         enableLongitude();
         enableLatitude();
@@ -56,11 +57,12 @@ function getLatitude() {
 
 function getLongitude() {
     const longitudeInput = document.getElementById("longitude");
-    let index = 0;
 
-    intervalId = setInterval(() => {
-        longitudeInput.placeholder = retrievingPlaceholderMsg.substring(0, index + 1);
-        index = (index + 1) % retrievingPlaceholderMsg.length;
+    let i = 0;
+
+    retrievingProgress = setInterval(() => {
+        longitudeInput.placeholder = retrievingPlaceholderMsg.substring(0, i + 1);
+        i = (i + 1) % retrievingPlaceholderMsg.length;
     }, 100);
 
     disableLatitude();
@@ -72,14 +74,14 @@ function getLongitude() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 longitude = position.coords.longitude;
-                clearInterval(intervalId);
+                clearInterval(retrievingProgress);
                 longitudeInput.value = longitude;
                 enableLatitude();
                 enableLongitude();
                 enableCity();
             },
             (error) => {
-                clearInterval(intervalId);
+                clearInterval(retrievingProgress);
                 longitudeInput.placeholder = "Error retrieving longitude.";
                 enableLatitude();
                 enableLongitude();
@@ -87,7 +89,7 @@ function getLongitude() {
             }
         );
     } else {
-        clearInterval(intervalId);
+        clearInterval(retrievingProgress);
         longitudeInput.placeholder = "Unable to fetch longitude.";
         enableLatitude();
         enableLongitude();
@@ -126,6 +128,10 @@ function enableLongitude() {
     document.getElementById("clearLongBtn").disabled = false;
 }
 
+function enableLongitudeClear() {
+    document.getElementById("clearLongBtn").disabled = false;
+}
+
 function disableLatitude() {
     document.getElementById("getLatitudeBtn").disabled = true;
     document.getElementById("clearLatBtn").disabled = true;
@@ -133,6 +139,10 @@ function disableLatitude() {
 
 function enableLatitude() {
     document.getElementById("getLatitudeBtn").disabled = false;
+    document.getElementById("clearLatBtn").disabled = false;
+}
+
+function enableLatitudeClear() {
     document.getElementById("clearLatBtn").disabled = false;
 }
 
@@ -167,7 +177,7 @@ function calculateDistance() {
     console.log("The coordinates of " + lavaLake + " are: " + latitudeLavaLake, longitudeLavaLake);
 
     // Distance calculation
-    const distance = calculateDistanceBetweenCoordinates(latitude, longitude, latitudeLavaLake, longitudeLavaLake);
+    const distance = calculateDistanceCoordinates(lavaLake, longitude, latitudeLavaLake, longitudeLavaLake);
     const miles = distance * 0.621371;
     const roundedMiles = Math.round(miles);
     const roundedDistance = Math.round(distance);
@@ -176,13 +186,14 @@ function calculateDistance() {
     const distanceOutput = document.getElementById("distanceCalculation");
     // print distanceMessage to distanceCalculation
     distanceOutput.innerHTML = distanceMessage;
+ 
 }
 
-function calculateDistanceBetweenCoordinates(lat1, lon1, lat2, lon2) {
-    lat1 = lat1 * Math.PI / 180;
-    lon1 = lon1 * Math.PI / 180;
-    lat2 = lat2 * Math.PI / 180;
-    lon2 = lon2 * Math.PI / 180;
-    const d = 6371 * Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon1 - lon2));
-    return d;
+function calculateDistanceCoordinates(lavaLake, longitude, latitudeLavaLake, longitudeLavaLake) {
+    latitude = latitude * Math.PI / 180;
+    longitude = longitude * Math.PI / 180;
+    latitudeLavaLake = latitudeLavaLake * Math.PI / 180;
+    longitudeLavaLake = longitudeLavaLake * Math.PI / 180;
+    const distance = 6371 * Math.acos(Math.sin(latitude) * Math.sin(latitudeLavaLake) + Math.cos(latitude) * Math.cos(latitudeLavaLake) * Math.cos(longitude - longitudeLavaLake));
+    return distance;
 }
