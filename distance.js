@@ -70,7 +70,7 @@ function getLongitude() {
     disableCity();
 
     // Geolocation API
-    if (navigator.geolocation) {
+    if (navigator.geolocation && navigator.permissions) {
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 longitude = position.coords.longitude;
@@ -181,12 +181,20 @@ function calculateDistance() {
     const miles = distance * 0.621371;
     const roundedMiles = Math.round(miles);
     const roundedDistance = Math.round(distance);
-    console.log("The distance between " + city + " and " + lavaLake + " is: " + roundedDistance + " km" + " or " + roundedMiles + " miles.");
-    const distanceMessage = "The distance between " + city + " and " + lavaLake + " is: " + roundedDistance + " km" + " or " + roundedMiles + " miles.";
+    console.log(city + " to " + lavaLake + ":\n" + roundedDistance + " km" + " or " + roundedMiles + " miles.");
+    const distanceMessage = city + " to " + lavaLake + ":\n" + roundedDistance + " km" + " or " + roundedMiles + " miles.";
     const distanceOutput = document.getElementById("distanceCalculation");
-    // print distanceMessage to distanceCalculation
-    distanceOutput.innerHTML = distanceMessage;
- 
+    distanceOutput.innerText = distanceMessage;
+
+    const clearAllButton = document.createElement("button");
+    clearAllButton.textContent = "Clear All";
+    clearAllButton.style.display = "block";
+    clearAllButton.onclick = function() {
+        window.location.href = "distance.html";
+    };
+
+    clearAllButton.id = "clearAllButton"; 
+    distanceOutput.appendChild(clearAllButton);
 }
 
 function calculateDistanceCoordinates(lavaLake, longitude, latitudeLavaLake, longitudeLavaLake) {
@@ -196,4 +204,8 @@ function calculateDistanceCoordinates(lavaLake, longitude, latitudeLavaLake, lon
     longitudeLavaLake = longitudeLavaLake * Math.PI / 180;
     const distance = 6371 * Math.acos(Math.sin(latitude) * Math.sin(latitudeLavaLake) + Math.cos(latitude) * Math.cos(latitudeLavaLake) * Math.cos(longitude - longitudeLavaLake));
     return distance;
+}
+
+function clearDistance() {
+    window.location.href = "distance.html";
 }

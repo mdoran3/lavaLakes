@@ -357,3 +357,16 @@ nav.top ul {
 .distLink a:hover {
     text-decoration: underline;
 }
+
+.watchMore{
+    color: #E0DFD5; 
+}
+
+.watchMore a {
+    color: #E0DFD5; 
+    text-decoration: none; 
+}
+
+.watchMore a:hover {
+    text-decoration: underline;
+}
